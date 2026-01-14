@@ -53,5 +53,6 @@ ThemeData themeData = ThemeData(
       fontWeight: FontWeight.w600,
       color: AppColors.secondPrimary,
     ),
+   
   ),
 );
