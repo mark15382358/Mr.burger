@@ -44,6 +44,12 @@ ThemeData themeData = ThemeData(
       color: AppColors.secondPrimary,
     ),
     labelSmall: TextStyle(
+      fontSize: AppSizes.sp14,
+      color: AppColors.grey,
+      height: 1.5,
+    ),
+
+    labelLarge: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: AppSizes.sp18,
       color: AppColors.checkoutPage1,
@@ -53,6 +59,5 @@ ThemeData themeData = ThemeData(
       fontWeight: FontWeight.w600,
       color: AppColors.secondPrimary,
     ),
-   
   ),
 );

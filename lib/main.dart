@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mr_burger/core/theme/themeData.dart';
 import 'package:mr_burger/features/auth/view/sign_up_view.dart';
 import 'package:mr_burger/main_screen.dart';
+import 'package:mr_burger/splash_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -19,14 +19,13 @@ class MyApp extends StatelessWidget {
 
       builder: (_, child) {
         return MaterialApp(
-        
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: themeData,
           // theme: ThemeData(
           //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // ),
-          home: MainScreen(),
+          home: SignUpView(),
         );
       },
     );

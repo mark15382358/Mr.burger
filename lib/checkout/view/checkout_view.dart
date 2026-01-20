@@ -1,11 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mr_burger/checkout/widgets/custom_checkout_text.dart';
+import 'package:mr_burger/checkout/widgets/success_dialog.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 import 'package:mr_burger/features/shared/custom_button.dart';
 
-class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key});
+class CheckoutView extends StatefulWidget {
+  CheckoutView({super.key});
+  @override
+  State<CheckoutView> createState() => _CheckoutViewState();
+}
+
+class _CheckoutViewState extends State<CheckoutView> {
+  String selectedMethod = "cash";
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +55,11 @@ class CheckoutView extends StatelessWidget {
               ),
               CustomButton(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => CheckoutView(),
-                    ),
-                  );
+                  SuccessDialog.show(context);
                 },
                 title: "Pay Now",
               ),
             ],
-            
           ),
         ),
       ),
@@ -133,8 +136,12 @@ class CheckoutView extends StatelessWidget {
                   trailing: Radio<String>(
                     value: "cash",
                     activeColor: AppColors.white,
-                    groupValue: "cash",
-                    onChanged: (value) {},
+                    groupValue: selectedMethod,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedMethod = value!;
+                      });
+                    },
                   ),
                   leading: Image.asset(
                     "assets/images/cash_icon.png",
@@ -157,10 +164,14 @@ class CheckoutView extends StatelessWidget {
                     ),
                   ),
                   trailing: Radio<String>(
-                    value: "cash",
+                    value: "visa",
                     activeColor: AppColors.white,
-                    groupValue: "cash",
-                    onChanged: (value) {},
+                    groupValue: selectedMethod,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedMethod = value!;
+                      });
+                    },
                   ),
                   subtitle: Text(
                     "3566 **** **** 0505",
@@ -176,7 +187,11 @@ class CheckoutView extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Checkbox(value: true, onChanged: (value) {}),
+                  Checkbox(
+                    activeColor: AppColors.red,
+                    value: true,
+                    onChanged: (value) {},
+                  ),
                   Text(
                     "Save card details for future payments",
                     style: Theme.of(

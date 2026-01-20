@@ -35,17 +35,18 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      cursorColor: AppColors.primary,
+      cursorColor: AppColors.white,
       cursorHeight: 20,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: AppColors.grey),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: AppColors.white),
         ),
         hintText: widget.hint,
-        fillColor: Colors.white,
+        hintStyle: TextStyle(color: AppColors.white),
+        fillColor: AppColors.primary,
         filled: true,
 
         suffix: widget.isPassword
@@ -59,7 +60,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         if (value == null || value.trim().isEmpty) {
           return "Please Enter the ${widget.hint}";
         } else {
-        return  null;
+          return null;
         }
       },
       obscureText: obsecureText,
