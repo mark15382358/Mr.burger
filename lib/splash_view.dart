@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
+import 'package:mr_burger/features/auth/view/login_view.dart';
 import 'package:mr_burger/main_screen.dart';
 
 class SplashView extends StatefulWidget {
@@ -62,7 +63,7 @@ class _SplashViewState extends State<SplashView>
     Navigator.pushReplacement(
       context,
       PageRouteBuilder(
-        pageBuilder: (_, animation, __) => MainScreen(),
+        pageBuilder: (_, animation, __) => LoginView(),
         transitionsBuilder: (_, animation, __, child) {
           return FadeTransition(opacity: animation, child: child);
         },

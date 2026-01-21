@@ -31,7 +31,7 @@ ThemeData themeData = ThemeData(
     displaySmall: TextStyle(
       fontSize: AppSizes.sp13,
       fontWeight: FontWeight.w500,
-      color: Colors.white,
+      color: AppColors.grey,
     ),
     displayMedium: TextStyle(
       color: Color(0xff6A6A6A),
@@ -58,6 +58,11 @@ ThemeData themeData = ThemeData(
       fontSize: AppSizes.sp20,
       fontWeight: FontWeight.w600,
       color: AppColors.secondPrimary,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: AppSizes.sp13,
+      fontWeight: FontWeight.w800,
+      color: AppColors.orange,
     ),
   ),
 );

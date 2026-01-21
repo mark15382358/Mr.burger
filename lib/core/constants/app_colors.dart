@@ -10,4 +10,6 @@ class AppColors {
   static Color blue = Colors.blue.shade900;
   static Color grey = Color(0xff808080);
   static Color red = Color(0xffEF2A39);
+  static Color orange = Colors.orange;
+  static Color dividerColor = Color(0xffE8E8E8);
 }

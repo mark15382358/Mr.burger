@@ -13,7 +13,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List category = ["All", "Combo", "Sliders", "Aha", "Ahteen", "3Ahaat"];
+  List category = ["All", "Combo", "Sliders", "Small", "Mediam", "Large"];
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,6 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               ViewItem(),
-          
             ],
           ),
         ),

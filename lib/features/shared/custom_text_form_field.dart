@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
+import 'package:mr_burger/core/constants/app_sizes.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String hint;
   final bool isPassword;
+  final Widget? labelText;
   final TextEditingController controller;
   const CustomTextFormField({
+    this.labelText,
     super.key,
     required this.hint,
     required this.isPassword,
@@ -38,10 +41,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       cursorColor: AppColors.white,
       cursorHeight: 20,
       decoration: InputDecoration(
+        label: widget.labelText,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.grey),
+          borderRadius: BorderRadius.circular(AppSizes.r30),
         ),
         focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.white),
+          borderRadius: BorderRadius.circular(AppSizes.r30),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppSizes.r30),
           borderSide: BorderSide(color: AppColors.white),
         ),
         hintText: widget.hint,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/cart/widgets/cart_item.dart';
 import 'package:mr_burger/features/shared/custom_button.dart';
 
 class OrderHistoryView extends StatelessWidget {
@@ -39,7 +37,7 @@ class OrderHistoryView extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(left: 0),
                                     child: Text(
-                                      "AHA",
+                                      "Burger",
                                       style: Theme.of(
                                         context,
                                       ).textTheme.titleMedium,

@@ -4,6 +4,7 @@ import 'package:mr_burger/checkout/widgets/custom_checkout_text.dart';
 import 'package:mr_burger/checkout/widgets/success_dialog.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
+import 'package:mr_burger/core/shared/shared_widgets/debit_card_widget.dart';
 import 'package:mr_burger/features/shared/custom_button.dart';
 
 class CheckoutView extends StatefulWidget {
@@ -150,40 +151,14 @@ class _CheckoutViewState extends State<CheckoutView> {
                 ),
               ),
               SizedBox(height: AppSizes.h30),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppSizes.h20),
-                  color: AppColors.blue,
-                ),
-                child: ListTile(
-                  title: Text(
-                    "Debit card",
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  trailing: Radio<String>(
-                    value: "visa",
-                    activeColor: AppColors.white,
-                    groupValue: selectedMethod,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedMethod = value!;
-                      });
-                    },
-                  ),
-                  subtitle: Text(
-                    "3566 **** **** 0505",
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall?.copyWith(color: AppColors.white),
-                  ),
-                  leading: Image.asset(
-                    "assets/images/visa.png",
-                    width: AppSizes.w48,
-                  ),
-                ),
+
+              DebitCardWidget(
+                groupValue: selectedMethod,
+                onChanged: (value) {
+                  setState(() {
+                    selectedMethod = value!;
+                  });
+                },
               ),
               Row(
                 children: [
