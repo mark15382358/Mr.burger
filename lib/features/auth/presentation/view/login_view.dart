@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/auth/view/sign_up_view.dart';
-import 'package:mr_burger/features/auth/widgets/auth_header_widget.dart';
-import 'package:mr_burger/features/auth/widgets/custom_auth_btn_widget.dart';
-import 'package:mr_burger/features/auth/widgets/guest_widget.dart';
+import 'package:mr_burger/features/auth/presentation/view/sign_up_view.dart';
+import 'package:mr_burger/features/auth/presentation/widgets/auth_header_widget.dart';
+import 'package:mr_burger/features/auth/presentation/widgets/custom_auth_btn_widget.dart';
+import 'package:mr_burger/features/auth/presentation/widgets/guest_widget.dart';
 import 'package:mr_burger/features/shared/custom_text.dart';
 import 'package:mr_burger/features/shared/custom_text_form_field.dart';
 

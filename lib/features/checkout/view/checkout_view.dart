@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mr_burger/checkout/widgets/custom_checkout_text.dart';
-import 'package:mr_burger/checkout/widgets/success_dialog.dart';
+import 'package:mr_burger/features/checkout/widgets/custom_checkout_text.dart';
+import 'package:mr_burger/features/checkout/widgets/success_dialog.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 import 'package:mr_burger/core/shared/shared_widgets/debit_card_widget.dart';

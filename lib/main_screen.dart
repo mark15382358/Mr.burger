@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/auth/view/profile_view.dart';
+import 'package:mr_burger/features/auth/presentation/view/profile_view.dart';
 import 'package:mr_burger/features/cart/views/cart_view.dart';
 import 'package:mr_burger/features/home/view/home_view.dart';
 import 'package:mr_burger/features/orderHistory/views/order_history_view.dart';

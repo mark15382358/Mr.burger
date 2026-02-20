@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/auth/view/login_view.dart';
-import 'package:mr_burger/main_screen.dart';
+import 'package:mr_burger/features/auth/presentation/view/login_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
