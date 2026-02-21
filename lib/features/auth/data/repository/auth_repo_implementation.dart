@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:mr_burger/core/network/failure.dart';
+import 'package:mr_burger/core/error/failure.dart';
+import 'package:mr_burger/core/error/exceptions..dart';
 import 'package:mr_burger/features/auth/data/remote_datasource/auth_remote_data_source.dart';
 import 'package:mr_burger/features/auth/data/remote_datasource/register_params.dart';
 import 'package:mr_burger/features/auth/domain/entity/user_entities.dart';
@@ -13,8 +14,10 @@ class AuthRepoImplementation implements BaseAuthRepo {
     try {
       final result = await authRemoteDataSource.register(params);
       return Right(result);
-    } on ServerFailure catch (failure) {
-      return Left(ServerFailure(failure.message.toString()));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

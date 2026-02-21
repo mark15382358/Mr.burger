@@ -14,10 +14,12 @@ class RegisterLoading extends AuthState {}
 
 class RegisterSuccess extends AuthState {
   final UserEntity user;
-  const RegisterSuccess({required this.user});
+    final String message;
+
+  const RegisterSuccess({required this.user,required this.message});
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [user,message];
 }
 
 class RegisterError extends AuthState {

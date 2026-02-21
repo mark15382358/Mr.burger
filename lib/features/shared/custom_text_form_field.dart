@@ -4,11 +4,13 @@ import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 
 class CustomTextFormField extends StatefulWidget {
+  final String? Function(String?)? validator;
   final String hint;
   final bool isPassword;
   final Widget? labelText;
   final TextEditingController controller;
   const CustomTextFormField({
+    this.validator,
     this.labelText,
     super.key,
     required this.hint,
@@ -54,6 +56,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderRadius: BorderRadius.circular(AppSizes.r30),
           borderSide: BorderSide(color: AppColors.white),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.red),
+          borderRadius: BorderRadius.circular(AppSizes.r30),
+        ),
         hintText: widget.hint,
         hintStyle: TextStyle(color: AppColors.white),
         fillColor: AppColors.primary,
@@ -66,13 +72,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               )
             : null,
       ),
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return "Please Enter the ${widget.hint}";
-        } else {
-          return null;
-        }
-      },
+      validator:
+          widget.validator ??
+          (value) {
+            if (value == null || value.trim().isEmpty) {
+              return "Please Enter the ${widget.hint}";
+            }
+            return null;
+          },
       obscureText: obsecureText,
     );
   }

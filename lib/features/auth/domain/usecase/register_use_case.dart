@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mr_burger/core/network/failure.dart';
+import 'package:mr_burger/core/error/failure.dart';
 import 'package:mr_burger/core/usecase/base_use_case.dart';
 import 'package:mr_burger/features/auth/data/remote_datasource/register_params.dart';
 import 'package:mr_burger/features/auth/domain/entity/user_entities.dart';

@@ -4,8 +4,11 @@ import 'package:mr_burger/core/utils/pref_helper.dart';
 class DioClient {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "https://sonic-zdi0.onrender.com/api",
-      headers: {"Content-Type": "application/json"},
+      baseUrl: "https://sonic-zdi0.onrender.com/api/",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
     ),
   );
 

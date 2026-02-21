@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
+import 'package:mr_burger/core/constants/app_strings.dart';
 import 'package:mr_burger/core/utils/service_locator.dart';
+import 'package:mr_burger/core/utils/validators.dart';
 import 'package:mr_burger/features/auth/data/remote_datasource/register_params.dart';
 import 'package:mr_burger/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:mr_burger/features/auth/presentation/controller/cubit/auth_state.dart';
+import 'package:mr_burger/features/auth/presentation/view/login_view.dart';
 import 'package:mr_burger/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:mr_burger/features/auth/presentation/widgets/custom_auth_btn_widget.dart';
 import 'package:mr_burger/features/shared/custom_text_form_field.dart';
-import 'package:mr_burger/main_screen.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
-
   @override
   State<SignUpView> createState() => _SignUpViewState();
 }
@@ -40,18 +41,23 @@ class _SignUpViewState extends State<SignUpView> {
           listener: (context, state) {
             if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Success! Welcome to Mr. Burger")),
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: AppColors.green,
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen(),
+                  builder: (BuildContext context) => LoginView(),
                 ),
               );
             } else if (state is RegisterError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
+
                   backgroundColor: Colors.red,
                 ),
               );
@@ -90,32 +96,43 @@ class _SignUpViewState extends State<SignUpView> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 CustomTextFormField(
-                                  hint: "Name",
+                                  hint: AppStrings.name,
                                   controller: nameController,
                                   isPassword: false,
+                                  validator: AppValidator.validateName,
                                 ),
                                 SizedBox(height: AppSizes.h15),
                                 CustomTextFormField(
-                                  hint: "Email",
+                                  validator: AppValidator.validateEmail,
+                                  hint: AppStrings.email,
                                   controller: emailController,
                                   isPassword: false,
                                 ),
                                 SizedBox(height: AppSizes.h15),
 
                                 CustomTextFormField(
-                                  hint: "Phone",
+                                  hint: AppStrings.phone,
                                   controller: phoneController,
                                   isPassword: false,
+                                  validator: AppValidator.validatePhone,
                                 ),
+
                                 SizedBox(height: AppSizes.h15),
                                 CustomTextFormField(
-                                  hint: "Password",
+                                  hint: AppStrings.password,
                                   isPassword: true,
                                   controller: passwordController,
+                                  validator: AppValidator.validatePassword,
                                 ),
                                 SizedBox(height: AppSizes.h15),
                                 CustomTextFormField(
-                                  hint: "Confirm Password",
+                                  validator: (value) =>
+                                      AppValidator.validateConfirmPassword(
+                                        value,
+                                        passwordController.text,
+                                      ),
+
+                                  hint: AppStrings.confirmPassword,
                                   isPassword: true,
                                   controller: confirmPasswordController,
                                 ),
@@ -144,7 +161,7 @@ class _SignUpViewState extends State<SignUpView> {
                                                 );
                                           }
                                         },
-                                        text: "Sign Up",
+                                        text: AppStrings.signup,
                                       ),
 
                                 SizedBox(height: AppSizes.h20),
@@ -152,7 +169,7 @@ class _SignUpViewState extends State<SignUpView> {
                                   colorButton: AppColors.primary,
                                   colorText: AppColors.white,
                                   onTap: () => Navigator.pop(context),
-                                  text: "Go To Login ?",
+                                  text: AppStrings.goTologin,
                                 ),
                                 SizedBox(height: AppSizes.h20),
                               ],

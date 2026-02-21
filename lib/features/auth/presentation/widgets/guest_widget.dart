@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mr_burger/features/home/view/home_view.dart';
 import 'package:mr_burger/main_screen.dart';
 
 class GuestWidget extends StatelessWidget {

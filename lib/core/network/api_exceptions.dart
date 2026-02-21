@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:mr_burger/core/network/failure.dart';
+import 'package:mr_burger/core/error/failure.dart';
+import 'package:mr_burger/core/network/error_message_model.dart';
 
 class ApiExceptions {
   static Failure handleError(DioException error) {
@@ -38,23 +39,24 @@ class ApiExceptions {
 
   static Failure _handleBadResponse(Response? response) {
     int statusCode = response?.statusCode ?? 0;
-
     String? serverMessage;
+
     if (response?.data is Map) {
-      serverMessage = response?.data['message'] ?? response?.data['error'];
+      try {
+        final errorModel = ErrorMessageModel.fromJson(response?.data);
+
+        serverMessage = errorModel.message;
+      } catch (e) {
+        serverMessage = "Error parsing failure message";
+      }
     }
 
     switch (statusCode) {
       case 400:
-        return ServerFailure(serverMessage ?? "Bad request");
+      case 422:
+        return ServerFailure(serverMessage ?? "Validation error");
       case 401:
         return const ServerFailure("Unauthorized: Session expired");
-      case 403:
-        return const ServerFailure(
-          "Forbidden: You don't have permission to access this",
-        );
-      case 404:
-        return const ServerFailure("Request not found");
       case 500:
         return const ServerFailure("Internal server error, please try later");
       default:
