@@ -4,8 +4,8 @@ import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  final String? Function(String?)? validator;
-  final String hint;
+  final String? Function(String?)? validator; 
+  final String? hint;
   final bool isPassword;
   final Widget? labelText;
   final TextEditingController controller;
@@ -13,7 +13,7 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.labelText,
     super.key,
-    required this.hint,
+     this.hint,
     required this.isPassword,
     required this.controller,
   });
@@ -72,14 +72,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               )
             : null,
       ),
-      validator:
-          widget.validator ??
-          (value) {
-            if (value == null || value.trim().isEmpty) {
-              return "Please Enter the ${widget.hint}";
-            }
-            return null;
-          },
+     validator: widget.validator ?? (value) { // التعديل هنا: نستخدم الـ widget.validator أولاً
+  if (value == null || value.trim().isEmpty) {
+    return "Please Enter the ${widget.hint}";
+  }
+  return null;
+},
       obscureText: obsecureText,
     );
   }
