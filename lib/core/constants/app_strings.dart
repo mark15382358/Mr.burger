@@ -11,7 +11,10 @@ class AppStrings {
   static const String createAccount = "Create Account ?";
   static const String continueAsGuest = "Continue as a guest?";
   static const String address = "Address";
-  static const String debit= "Debit";
-  static const String updateProfile= "Update Profile";
-  static const String logout= "Logout";
+  static const String debit = "Debit";
+  static const String updateProfile = "Update Profile";
+  static const String logout = "Logout";
+  static const String star = "⭐";
+  static const String loading = "Loading...";
+  static const String search = "Search....";
 }

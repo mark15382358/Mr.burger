@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/product/widgets/topping_card.dart';
+import 'package:mr_burger/features/product/presentation/widgets/topping_card.dart';
 import 'package:mr_burger/features/shared/custom_button.dart';
 
 class ProductDetailsView extends StatelessWidget {

@@ -8,6 +8,8 @@ class DioClient {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        'User-Agent': 'PostmanRuntime/7.51.1',
+        'Connection': 'keep-alive',
       },
     ),
   );

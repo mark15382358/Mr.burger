@@ -30,7 +30,7 @@ class UserHeaders extends StatelessWidget {
         Spacer(),
         CircleAvatar(
           radius: AppSizes.r30,
-          child: Icon(CupertinoIcons.person, color: Colors.white),
+          child: Icon(CupertinoIcons.person, color: AppColors.white),
           backgroundColor: AppColors.primary,
         ),
       ],
