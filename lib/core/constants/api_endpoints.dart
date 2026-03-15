@@ -7,4 +7,6 @@ class ApiEndpoints {
   static const getFavorites = "/favorites";
   static const toggleFavorite = "/toggle-favorite";
   static const getCategories = "/categories";
+  static const grtToppings = "/toppings";
+  static const getSideOption = "/side-options";
 }

@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  final String? Function(String?)? validator; 
+  final String? Function(String?)? validator;
   final String? hint;
   final bool isPassword;
   final Widget? labelText;
+  final TextInputType? type;
   final TextEditingController controller;
   const CustomTextFormField({
     this.validator,
     this.labelText,
     super.key,
-     this.hint,
+    this.hint,
+    this.type,
     required this.isPassword,
     required this.controller,
   });
@@ -39,6 +42,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(RegExp(r'\s')),
+
+        // FilteringTextInputFormatter.digitsOnly,
+        // LengthLimitingTextInputFormatter(3),
+      ],
+      keyboardType: widget.type,
       controller: widget.controller,
       cursorColor: AppColors.white,
       cursorHeight: 20,
@@ -72,12 +82,15 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               )
             : null,
       ),
-     validator: widget.validator ?? (value) { // التعديل هنا: نستخدم الـ widget.validator أولاً
-  if (value == null || value.trim().isEmpty) {
-    return "Please Enter the ${widget.hint}";
-  }
-  return null;
-},
+      validator:
+          widget.validator ??
+          (value) {
+            // التعديل هنا: نستخدم الـ widget.validator أولاً
+            if (value == null || value.trim().isEmpty) {
+              return "Please Enter the ${widget.hint}";
+            }
+            return null;
+          },
       obscureText: obsecureText,
     );
   }

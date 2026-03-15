@@ -17,4 +17,6 @@ class AppStrings {
   static const String star = "⭐";
   static const String loading = "Loading...";
   static const String search = "Search....";
+  static const String imotion1 = "🥶";
+  static const String imotion2 = "🌶️";
 }

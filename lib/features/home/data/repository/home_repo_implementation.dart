@@ -12,7 +12,6 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl(this.remoteDataSource);
 
   @override
-  @override
   Future<Either<Failure, List<ProductEntity>>> getProducts({
     int? categoryId,
     String? name,

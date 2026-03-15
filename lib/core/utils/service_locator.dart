@@ -4,6 +4,7 @@ import 'package:mr_burger/core/network/api_services.dart';
 import 'package:mr_burger/core/network/dio_client.dart';
 import 'package:mr_burger/core/utils/auth_injection.dart';
 import 'package:mr_burger/core/utils/home_injection.dart';
+import 'package:mr_burger/core/utils/product_details_injection.dart';
 
 final sl = GetIt.instance;
 
@@ -11,6 +12,7 @@ class ServiceLocator {
   Future<void> init() async {
     initHome();
     initAuth();
+    initProductDetails();
 
     sl.registerLazySingleton<Dio>(() => Dio());
     //  Core Services

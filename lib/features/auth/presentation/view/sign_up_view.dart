@@ -21,14 +21,24 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final TextEditingController nameController;
+  late final TextEditingController confirmPasswordController;
+  late final TextEditingController phoneController;
+  late final GlobalKey<FormState> formKey;
   File? profileImage;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    nameController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+    phoneController = TextEditingController();
+    formKey = GlobalKey<FormState>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +60,7 @@ class _SignUpViewState extends State<SignUpView> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => LoginView(),
+                  builder: (BuildContext context) => const LoginView(),
                 ),
               );
             } else if (state is RegisterError) {
@@ -111,6 +121,7 @@ class _SignUpViewState extends State<SignUpView> {
                                 SizedBox(height: AppSizes.h15),
 
                                 CustomTextFormField(
+                                  type: TextInputType.phone,
                                   hint: AppStrings.phone,
                                   controller: phoneController,
                                   isPassword: false,

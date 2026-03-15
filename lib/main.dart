@@ -6,6 +6,7 @@ import 'package:mr_burger/core/utils/pref_helper.dart';
 import 'package:mr_burger/core/utils/service_locator.dart';
 import 'package:mr_burger/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:mr_burger/features/home/presentation/controller/cubit/home_cubit.dart';
+import 'package:mr_burger/features/product/presentation/controller/cubit/product_details_cubit.dart';
 import 'package:mr_burger/main_screen.dart';
 import 'package:mr_burger/splash_view.dart';
 
@@ -22,6 +23,7 @@ void main() async {
       providers: [
         BlocProvider(create: (context) => sl<AuthCubit>()),
         BlocProvider(create: (context) => sl<HomeCubit>()..getHomeData()),
+        BlocProvider(create: (context) => sl<ProductDetailsCubit>()),
       ],
       child: MyApp(
         startWidget: token != null ? MainScreen() : const SplashView(),
