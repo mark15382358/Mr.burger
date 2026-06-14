@@ -24,13 +24,47 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         sideOptionsResult.fold(
           (failure) => emit(ProductDetailsError(failure.message)),
           (sides) => emit(
-            ProductDetailsSuccess(toppings: toppings, sideOptions: sides),
+            ProductDetailsSuccess(
+              toppings: toppings,
+              sideOptions: sides,
+              selectedSides: [],
+              selectedToppings: [],
+            ),
           ),
         );
       },
     );
   }
 
+  /// Toggles the selection of a topping by its ID.
+  void toggleTopping(int toppingId) {
+    if (state is ProductDetailsSuccess) {
+      final currentState = state as ProductDetailsSuccess;
+      List<int> updatedToppings = List.from(currentState.selectedToppings);
+
+      if (updatedToppings.contains(toppingId)) {
+        updatedToppings.remove(toppingId); 
+      } else {
+        updatedToppings.add(toppingId);
+      }
+      emit(currentState.copyWith(selectedToppings: updatedToppings));
+    }
+  }
+/// Toggles the selection of a side option by its ID.
+  void toggleSideOption(int sideId) {
+    if (state is ProductDetailsSuccess) {
+      final currentState = state as ProductDetailsSuccess;
+      List<int> updatedSides = List.from(currentState.selectedSides);
+
+      if (updatedSides.contains(sideId)) {
+        updatedSides.remove(sideId);
+      } else {
+        updatedSides.add(sideId);
+      }
+      emit(currentState.copyWith(selectedSides: updatedSides));
+    }
+  }
+/// Updates the slider value in the state.
   void updateSlider(double newValue) {
     if (state is ProductDetailsSuccess) {
       final currentState = state as ProductDetailsSuccess;

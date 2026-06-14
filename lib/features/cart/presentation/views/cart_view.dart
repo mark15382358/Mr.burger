@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mr_burger/features/checkout/view/checkout_view.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
-import 'package:mr_burger/features/cart/widgets/cart_item.dart';
+import 'package:mr_burger/features/cart/presentation/widgets/cart_item.dart';
 import 'package:mr_burger/features/shared/custom_button.dart';
 
 class CartView extends StatefulWidget {

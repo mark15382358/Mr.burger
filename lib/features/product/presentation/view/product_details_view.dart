@@ -36,9 +36,9 @@ class ProductDetailsView extends StatelessWidget {
           final toppings = state is ProductDetailsSuccess
               ? state.toppings
               : List.generate(6, (index) => null);
-          final sliderVal = state is ProductDetailsSuccess
-              ? state.sliderValue
-              : 0.7;
+
+          final sliderVal = state is ProductDetailsSuccess ? state.sliderValue : 0.7;
+
           return SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(AppSizes.h12),
@@ -49,17 +49,10 @@ class ProductDetailsView extends StatelessWidget {
                     children: [
                       Image.network(productImage, height: AppSizes.h250),
                       SizedBox(width: AppSizes.w16),
-                      // Slider(
-                      //   value: 0.7,
-                      //   onChanged: (v) {},
-                      //   activeColor: AppColors.primary,
-                      // ),
                       Slider(
                         value: sliderVal,
                         onChanged: state is ProductDetailsSuccess
-                            ? (v) => context
-                                  .read<ProductDetailsCubit>()
-                                  .updateSlider(v)
+                            ? (v) => context.read<ProductDetailsCubit>().updateSlider(v)
                             : null,
                         activeColor: AppColors.primary,
                       ),
@@ -81,7 +74,6 @@ class ProductDetailsView extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(height: AppSizes.h10),
-
                   Skeletonizer(
                     enabled: isLoading,
                     child: SingleChildScrollView(
@@ -91,25 +83,31 @@ class ProductDetailsView extends StatelessWidget {
                           return Padding(
                             padding: EdgeInsets.only(right: AppSizes.h12),
                             child: ToppingCard(
-                              imageUrl: item?.image ?? "assets/images/meat.png",
+                              imageUrl: item?.image ??
+                                  "https://sonic-zdi0.onrender.com/storage/toppings/onions.png",
                               title: item?.name ?? "Loading...",
-                              onAdd: () {},
-                              color: AppColors.secondPrimary,
+                              onTap: () {
+                                if (state is ProductDetailsSuccess && item != null) {
+                                  context.read<ProductDetailsCubit>().toggleSideOption(item.id);
+                                }
+                              },
+                              color: (state is ProductDetailsSuccess && item != null)
+                                  ? (state.selectedSides.contains(item.id)
+                                      ? AppColors.primary.withOpacity(0.2)
+                                      : null)
+                                  : null,
                             ),
                           );
                         }).toList(),
                       ),
                     ),
                   ),
-
                   SizedBox(height: AppSizes.h50),
                   Text(
                     "Toppings",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(height: AppSizes.h10),
-
-                  // --- الـ Skeletonizer الخاص بالـ Toppings ---
                   Skeletonizer(
                     enabled: isLoading,
                     child: SingleChildScrollView(
@@ -119,10 +117,19 @@ class ProductDetailsView extends StatelessWidget {
                           return Padding(
                             padding: EdgeInsets.only(right: AppSizes.h12),
                             child: ToppingCard(
-                              imageUrl: item?.image ?? "assets/images/meat.png",
+                              imageUrl: item?.image ??
+                                  "https://sonic-zdi0.onrender.com/storage/toppings/onions.png",
                               title: item?.name ?? "Loading...",
-                              onAdd: () {},
-                              color: AppColors.secondPrimary,
+                              color: (state is ProductDetailsSuccess && item != null)
+                                  ? (state.selectedToppings.contains(item.id)
+                                      ? Colors.orange.withOpacity(0.2)
+                                      : null)
+                                  : null,
+                              onTap: () {
+                                if (state is ProductDetailsSuccess && item != null) {
+                                  context.read<ProductDetailsCubit>().toggleTopping(item.id);
+                                }
+                              },
                             ),
                           );
                         }).toList(),

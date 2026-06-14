@@ -9,4 +9,5 @@ class ApiEndpoints {
   static const getCategories = "/categories";
   static const grtToppings = "/toppings";
   static const getSideOption = "/side-options";
+  static const addToCart = "/cart/add";
 }

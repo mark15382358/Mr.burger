@@ -16,14 +16,13 @@ void main() async {
   ServiceLocator().init();
 
   String? token = await PrefHelper.getToken();
-  print(token);
 
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<AuthCubit>()),
         BlocProvider(create: (context) => sl<HomeCubit>()..getHomeData()),
-        BlocProvider(create: (context) => sl<ProductDetailsCubit>()),
+        BlocProvider(create: (context) => sl<ProductDetailsCubit>()..getProductOptions()),
       ],
       child: MyApp(
         startWidget: token != null ? MainScreen() : const SplashView(),

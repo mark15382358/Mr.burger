@@ -1,93 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 
 class ToppingCard extends StatelessWidget {
   final String imageUrl;
   final String title;
-  final VoidCallback onAdd;
-  final Color color;
+  final Color? color;
+  final VoidCallback? onTap;
 
   const ToppingCard({
     super.key,
+    required this.onTap,
     required this.imageUrl,
     required this.title,
-    required this.onAdd,
-    required this.color,
+    this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: onAdd,
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(AppSizes.r16),
-                child: Container(
-                  color: color,
+    final effectiveColor = color ?? Colors.grey[200];
 
-                  child: Column(
-                    children: [
-                      Container(
-                        width: AppSizes.w120,
-                        height: AppSizes.h80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSizes.r16),
-
-                          color: Color(0xfffdfdfd),
-                        ),
-
-                        child: Image.asset(
-                          imageUrl,
-                          fit: BoxFit.contain,
-                          width: AppSizes.w80,
-                          height: AppSizes.h50,
-                        ),
-                      ),
-
-                      SizedBox(height: AppSizes.h10),
-
-                      Container(
-                        width: AppSizes.w120,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppSizes.w8,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                title,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(color: Color(0xffFFFFFF)),
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: CircleAvatar(
-                                  radius: AppSizes.r12,
-                                  backgroundColor: Color(0xfffEF2A39),
-                                  child: Icon(
-                                    Icons.add,
-                                    size: AppSizes.h16,
-                                    color: Color(0xffFFFFFF),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: AppSizes.h6),
-                    ],
-                  ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+      width: AppSizes.w100,
+      height: AppSizes.h130,
+      padding: EdgeInsets.all(AppSizes.h8),
+      decoration: BoxDecoration(
+        color: effectiveColor,
+        borderRadius: BorderRadius.circular(AppSizes.r20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Skeleton.keep(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.fastfood, size: 40),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ],
+
+          SizedBox(height: AppSizes.h10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    ),
     );
+
+    
   }
 }

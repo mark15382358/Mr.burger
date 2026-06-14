@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mr_burger/core/constants/app_colors.dart';
 import 'package:mr_burger/core/constants/app_sizes.dart';
 import 'package:mr_burger/features/auth/presentation/view/profile_view.dart';
-import 'package:mr_burger/features/cart/views/cart_view.dart';
+import 'package:mr_burger/features/cart/presentation/views/cart_view.dart';
 import 'package:mr_burger/features/home/presentation/view/home_view.dart';
 import 'package:mr_burger/features/orderHistory/views/order_history_view.dart';
 
